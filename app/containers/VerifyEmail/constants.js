@@ -1,0 +1,13 @@
+/*
+ *
+ * VerifyEmail constants
+ *
+ */
+
+const verifyEmailConstants = {
+  VERIFY_EMAIL_REQUEST: 'VERIFY_EMAIL_REQUEST',
+  VERIFY_EMAIL_SUCCESS: 'VERIFY_EMAIL_SUCCESS',
+  VERIFY_EMAIL_FAILURE: 'VERIFY_EMAIL_FAILURE',
+  CLEAR_VERIFY_EMAIL_SUCCESS_FAILURE: 'CLEAR_VERIFY_EMAIL_SUCCESS_FAILURE',
+};
+export default verifyEmailConstants;
