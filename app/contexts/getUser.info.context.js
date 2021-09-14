@@ -10,7 +10,7 @@ export const GetUserContextProvider = ({ children }) => {
 
   const [user, setUser] = React.useState('');
 
-  // console.log('🛻😎😀🚒GetUserContextProvider: user: ', user);
+  console.log('🛻😎😀🚒GetUserContextProvider: user: ', user);
 
   React.useEffect(() => {
     if (userInfo) {
@@ -26,7 +26,7 @@ export const GetUserContextProvider = ({ children }) => {
       api.user
         .fetchUser(id, tokenInfo)
         .then(res => {
-          // console.log('handleGetUserDetails res: ', res);
+          console.log('handleGetUserDetails res: ', res);
           setUser(res);
         })
         .catch(error =>

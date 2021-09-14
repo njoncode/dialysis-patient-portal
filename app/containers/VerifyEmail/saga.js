@@ -24,7 +24,7 @@ function* verifyEmailRequestSaga() {
     if (response.success) {
       yield put(verifyEmailSuccessAction());
       yield put(clearVerifyEmailSuccessFailureAction());
-      yield put(push('/sign-in'));
+      // yield put(push('/sign-in'));
     } else {
       yield put(verifyEmailFailureAction(response.message));
       yield put(clearVerifyEmailSuccessFailureAction());

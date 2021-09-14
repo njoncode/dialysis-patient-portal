@@ -29,10 +29,11 @@ export default function App() {
         <GetUserContextProvider>
           <Router>
             <Switch>
-              <Route exact path="/" component={HomePage} />
+              {/* <Route exact path="/" component={HomePage} /> */}
               <Route path="/sign-in" component={SignInAndSignUp} />
               <ProtectedRoute exact path="/" component={HomePage} />
               <Route path="/verify-email" component={VerifyEmail} />
+              <Route path="/hello" component={NotFoundPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Router>

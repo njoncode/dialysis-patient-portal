@@ -23,11 +23,13 @@ function* signInRequestSaga() {
 
     if (!!response.success || response.status === 200) {
       yield put(signInSuccessAction(response.data));
-      yield put(clearSignInSuccessFailureAction());
-
+      // Storing access token in session storage
       sessionStorage.setItem('signedInUserInfo', JSON.stringify(response.data));
 
-      yield put(push('/'));
+      yield put(clearSignInSuccessFailureAction());
+      console.log('signInRequestSaga SUCCESSFULL');
+      // Redirecting to home page : SIGN-IN SUCCESSFUL
+      // yield put(push('/'));
     } else {
       // console.error('signInRequestSaga: failure', response.message);
       yield put(signInFailureAction(response.message));

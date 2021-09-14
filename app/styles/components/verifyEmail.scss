@@ -1,0 +1,21 @@
+.verify-email-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.verify-email-failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 60vh;
+  background: #fff;
+  box-shadow: 8px 8px 8px rgb(150, 150, 151);
+}
+
+.verify-email-failure-heading {
+  margin-top: 60px;
+}

@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  console.log('ProtectedRoute!!!!!');
+
   const signedInUserInfo = JSON.parse(
     sessionStorage.getItem('signedInUserInfo'),
   );
-  // console.log('ProtectedRoutelocalStorage.getItem: ', signedInUserInfo);
+  console.log('ProtectedRoute signedInUserInfo: ', signedInUserInfo);
 
   const isAuthenticated = !!signedInUserInfo;
+
+  console.log('ProtectedRoute isAuthenticated: ', isAuthenticated);
 
   return isAuthenticated ? (
     <Component />
@@ -22,3 +26,13 @@ ProtectedRoute.propTypes = {
 };
 
 export default ProtectedRoute;
+
+/* <Route
+      {...rest}
+      render={props => {
+        if (signedInUserInfo) {
+          return <Component {...rest} {...props} />;
+        }
+        return <Redirect to="/sign-in" />;
+      }}
+    /> */

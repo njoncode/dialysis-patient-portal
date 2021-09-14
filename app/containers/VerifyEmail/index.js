@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 
 import {
@@ -30,22 +30,28 @@ const VerifyEmail = ({
   verifyEmailRequestDispatch,
   isVerifyEmailLoading,
   isVerifyEmailSuccess,
+  isverifyEmailFailure,
   verifyEmailFailureMessage,
 }) => {
   useInjectReducer({ key: 'verifyEmail', reducer });
   useInjectSaga({ key: 'verifyEmail', saga });
 
+  const history = useHistory();
+
   const { search } = useLocation();
   const { token } = queryString.parse(search);
   console.log('VerifyEmail token: ', token);
 
-  const handleVerifyEmail = () => {
-    verifyEmailRequestDispatch(token);
+  const handleVerifyEmail = verifyEmailToken => {
+    verifyEmailRequestDispatch(verifyEmailToken);
   };
 
   React.useEffect(() => {
-    handleVerifyEmail();
-  }, []);
+    handleVerifyEmail(token);
+    if (isVerifyEmailSuccess) {
+      history.push('/sign-in');
+    }
+  }, [isVerifyEmailSuccess]);
 
   return (
     <div>
@@ -53,6 +59,7 @@ const VerifyEmail = ({
         handleVerifyEmail={handleVerifyEmail}
         isVerifyEmailLoading={isVerifyEmailLoading}
         isVerifyEmailSuccess={isVerifyEmailSuccess}
+        isverifyEmailFailure={isverifyEmailFailure}
         verifyEmailFailureMessage={verifyEmailFailureMessage}
       />
     </div>
@@ -63,6 +70,7 @@ VerifyEmail.propTypes = {
   verifyEmailRequestDispatch: PropTypes.func.isRequired,
   isVerifyEmailLoading: PropTypes.bool,
   isVerifyEmailSuccess: PropTypes.bool,
+  isverifyEmailFailure: PropTypes.bool,
   verifyEmailFailureMessage: PropTypes.string,
 };
 

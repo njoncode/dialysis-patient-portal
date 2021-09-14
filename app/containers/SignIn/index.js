@@ -13,6 +13,8 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
+import { useHistory } from 'react-router-dom';
+
 import reducer from './reducer';
 import saga from './saga';
 
@@ -38,6 +40,16 @@ export function SignIn({
 }) {
   useInjectReducer({ key: 'signIn', reducer });
   useInjectSaga({ key: 'signIn', saga });
+
+  const history = useHistory();
+
+  React.useEffect(() => {
+    if (isSignInSuccess) {
+      history.push('/');
+    }
+  }, [isSignInSuccess]);
+
+  console.log('isSignInSuccess!!!!: ', isSignInSuccess);
 
   const signInInitialState = {
     email: '',

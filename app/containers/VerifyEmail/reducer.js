@@ -10,6 +10,7 @@ export const initialState = {
   token: null,
   isVerifyEmailLoading: true,
   isVerifyEmailSuccess: false,
+  isverifyEmailFailure: '',
   verifyEmailFailureMessage: '',
 };
 
@@ -34,13 +35,14 @@ const verifyEmailReducer = (state = initialState, action) =>
           ...state,
           isVerifyEmailLoading: false,
           isVerifyEmailSuccess: false,
+          isverifyEmailFailure: true,
           verifyEmailFailureMessage: action.payload,
         };
       case verifyEmailConstants.CLEAR_VERIFY_EMAIL_SUCCESS_FAILURE:
         return {
           ...state,
           isVerifyEmailSuccess: false,
-          verifyEmailFailureMessage: '',
+          isverifyEmailFailure: false,
         };
       default:
         return state;

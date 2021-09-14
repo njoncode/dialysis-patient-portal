@@ -17,6 +17,8 @@ import messages from './messages';
 import { makeSelectSignInUserInfo } from '../SignIn/selectors';
 
 const HomePage = () => {
+  console.log('HomePage RENDERED!!!!!!');
+
   const { addToast } = useToasts();
 
   const homePagesignedInUserInfo = JSON.parse(
